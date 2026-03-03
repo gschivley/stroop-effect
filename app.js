@@ -2,7 +2,7 @@
 const appState = {
     currentSlide: 0,
     slides: [
-        { name: 'Stroop Effect 1.png', path: 'slides/Stroop Effect 1.png', instruction: 'Recite the ink color' },
+        { name: 'Stroop Effect 1.png', path: 'slides/Stroop Effect 1.png', instruction: 'Recite the ink color, which matches the word' },
         { name: 'Stroop Effect 2.png', path: 'slides/Stroop Effect 2.png', instruction: 'Recite the ink color, ignore the words' },
         { name: 'Stroop Effect 3.png', path: 'slides/Stroop Effect 3.png', instruction: 'Read the word, ignore the ink color' },
         { name: 'Stroop Effect 4.png', path: 'slides/Stroop Effect 4.png', instruction: 'Recite the ink color, ignore the words' }
