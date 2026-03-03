@@ -153,6 +153,33 @@ body {
     line-height: 1.6;
 }
 
+/* Instruction Page */
+#instruction-page {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+.instruction-message {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.instruction-message h2 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 30px;
+}
+
+.instruction-text {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
 /* Results Page */
 #results-page {
     background: white;

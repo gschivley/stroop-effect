@@ -2,10 +2,10 @@
 const appState = {
     currentSlide: 0,
     slides: [
-        { name: 'Stroop Effect 1.png', path: 'slides/Stroop Effect 1.png' },
-        { name: 'Stroop Effect 2.png', path: 'slides/Stroop Effect 2.png' },
-        { name: 'Stroop Effect 3.png', path: 'slides/Stroop Effect 3.png' },
-        { name: 'Stroop Effect 4.png', path: 'slides/Stroop Effect 4.png' }
+        { name: 'Stroop Effect 1.png', path: 'slides/Stroop Effect 1.png', instruction: 'Recite the ink color' },
+        { name: 'Stroop Effect 2.png', path: 'slides/Stroop Effect 2.png', instruction: 'Recite the ink color, ignore the words' },
+        { name: 'Stroop Effect 3.png', path: 'slides/Stroop Effect 3.png', instruction: 'Read the word, ignore the ink color' },
+        { name: 'Stroop Effect 4.png', path: 'slides/Stroop Effect 4.png', instruction: 'Recite the ink color, ignore the words' }
     ],
     times: [],
     isTimerRunning: false,
@@ -16,6 +16,7 @@ const appState = {
 // DOM References
 const pages = {
     landing: document.getElementById('landing-page'),
+    instruction: document.getElementById('instruction-page'),
     slide: document.getElementById('slide-page'),
     break: document.getElementById('break-page'),
     results: document.getElementById('results-page')
@@ -25,6 +26,8 @@ const elements = {
     slideImage: document.getElementById('slide-image'),
     slideNumber: document.getElementById('slide-number'),
     timer: document.getElementById('timer'),
+    instructionStep: document.getElementById('instruction-step'),
+    instructionText: document.getElementById('instruction-text'),
     resultsList: document.getElementById('results-list'),
     restartButton: document.getElementById('restart-button')
 };
@@ -93,9 +96,16 @@ function advancePage() {
     const slidesComplete = appState.currentSlide + 1;
     const totalSlides = appState.slides.length;
     
-    // Landing → First Slide
+    // Landing → First Instruction
     if (pages.landing.classList.contains('active')) {
-        displaySlide(0);
+        showInstruction(0);
+        showPage('instruction');
+        return;
+    }
+    
+    // Instruction page → Slide
+    if (pages.instruction.classList.contains('active')) {
+        displaySlide(appState.currentSlide);
         showPage('slide');
         startTimer();
         return;
@@ -116,15 +126,21 @@ function advancePage() {
         return;
     }
     
-    // Break page → Next slide
+    // Break page → Next instruction
     if (pages.break.classList.contains('active')) {
-        displaySlide(slidesComplete);
-        showPage('slide');
-        startTimer();
+        showInstruction(slidesComplete);
+        showPage('instruction');
         return;
     }
     
     // Results page → Do nothing on space (button only)
+}
+
+function showInstruction(slideIndex) {
+    appState.currentSlide = slideIndex;
+    const slide = appState.slides[slideIndex];
+    elements.instructionStep.textContent = slideIndex + 1;
+    elements.instructionText.textContent = slide.instruction;
 }
 
 // Event Listeners
