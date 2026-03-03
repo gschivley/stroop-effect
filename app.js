@@ -137,11 +137,12 @@ document.addEventListener('keydown', () => {
     advancePage();
 });
 
-document.addEventListener('touchstart', () => {
+document.addEventListener('click', () => {
     advancePage();
 });
 
-elements.restartButton.addEventListener('click', () => {
+elements.restartButton.addEventListener('click', (e) => {
+    e.stopPropagation();
     resetApp();
 });
 
