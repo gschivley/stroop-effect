@@ -30,7 +30,7 @@ Each section times how long it takes you to complete it. The results show your p
 
 This app is deployed using GitHub Pages and GitHub Actions. Any push to the `main` branch automatically deploys the latest version.
 
-**Live App**: https://gschivley.github.io/stroop-effect/
+**Live App**: <https://gschivley.github.io/stroop-effect/>
 
 ## Technical Details
 

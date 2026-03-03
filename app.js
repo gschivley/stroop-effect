@@ -25,7 +25,6 @@ const pages = {
 const elements = {
     slideImage: document.getElementById('slide-image'),
     slideNumber: document.getElementById('slide-number'),
-    timer: document.getElementById('timer'),
     instructionStep: document.getElementById('instruction-step'),
     instructionText: document.getElementById('instruction-text'),
     resultsList: document.getElementById('results-list'),
@@ -40,25 +39,19 @@ function showPage(pageName) {
 
 function startTimer() {
     if (appState.isTimerRunning) return;
-    
+
     appState.isTimerRunning = true;
     appState.timerStartTime = performance.now();
-    
-    appState.timerIntervalId = setInterval(() => {
-        const elapsed = (performance.now() - appState.timerStartTime) / 1000;
-        elements.timer.textContent = elapsed.toFixed(1) + 's';
-    }, 100);
 }
 
 function stopTimer() {
     if (!appState.isTimerRunning) return;
-    
-    clearInterval(appState.timerIntervalId);
+
     appState.isTimerRunning = false;
-    
+
     const finalTime = (performance.now() - appState.timerStartTime) / 1000;
     appState.times.push(finalTime);
-    
+
     return finalTime;
 }
 
@@ -67,12 +60,11 @@ function displaySlide(slideIndex) {
     const slide = appState.slides[slideIndex];
     elements.slideImage.src = slide.path;
     elements.slideNumber.textContent = `Slide ${slideIndex + 1} of ${appState.slides.length}`;
-    elements.timer.textContent = '0.0s';
 }
 
 function displayResults() {
     elements.resultsList.innerHTML = '';
-    
+
     appState.times.forEach((time, index) => {
         const resultItem = document.createElement('div');
         resultItem.className = 'result-item';
@@ -85,9 +77,6 @@ function resetApp() {
     appState.currentSlide = 0;
     appState.times = [];
     appState.isTimerRunning = false;
-    if (appState.timerIntervalId) {
-        clearInterval(appState.timerIntervalId);
-    }
     showPage('landing');
 }
 
@@ -95,14 +84,14 @@ function resetApp() {
 function advancePage() {
     const slidesComplete = appState.currentSlide + 1;
     const totalSlides = appState.slides.length;
-    
+
     // Landing → First Instruction
     if (pages.landing.classList.contains('active')) {
         showInstruction(0);
         showPage('instruction');
         return;
     }
-    
+
     // Instruction page → Slide
     if (pages.instruction.classList.contains('active')) {
         displaySlide(appState.currentSlide);
@@ -110,11 +99,11 @@ function advancePage() {
         startTimer();
         return;
     }
-    
+
     // On a slide page
     if (pages.slide.classList.contains('active')) {
         stopTimer();
-        
+
         // Check if there are more slides
         if (slidesComplete < totalSlides) {
             showPage('break');
@@ -125,14 +114,14 @@ function advancePage() {
         }
         return;
     }
-    
+
     // Break page → Next instruction
     if (pages.break.classList.contains('active')) {
         showInstruction(slidesComplete);
         showPage('instruction');
         return;
     }
-    
+
     // Results page → Do nothing on space (button only)
 }
 
