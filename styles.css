@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 900px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.page.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.page-content {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Landing Page */
+#landing-page {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+#landing-page h1 {
+    font-size: 3em;
+    color: #667eea;
+    margin-bottom: 30px;
+}
+
+#landing-page .instructions {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Slide Page */
+#slide-page {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#slide-page .page-content {
+    padding: 30px;
+}
+
+.slide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.slide-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1.1em;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#slide-number {
+    text-align: left;
+}
+
+.timer {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+}
+
+.slide-image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.slide-instructions {
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* Break Page */
+#break-page {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+.break-message {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.break-message h2 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.break-message p {
+    font-size: 1.5em;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Results Page */
+#results-page {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+
+#results-page h1 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+#results-page > .page-content > p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.results-list {
+    text-align: left;
+    display: inline-block;
+    background: #f8f9fa;
+    padding: 20px 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    min-width: 300px;
+}
+
+.result-item {
+    font-size: 1.1em;
+    color: #333;
+    padding: 10px 0;
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.result-item:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.restart-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+}
+
+.restart-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.restart-button:active {
+    transform: translateY(0);
+}
+
+/* Spacer Hint */
+.spacer-hint {
+    font-size: 1em;
+    color: #888;
+    margin-top: 20px;
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #landing-page h1,
+    .break-message h2 {
+        font-size: 2em;
+    }
+
+    #landing-page .instructions {
+        font-size: 1em;
+    }
+
+    .slide-image {
+        max-height: 350px;
+    }
+
+    .results-list {
+        min-width: 250px;
+        padding: 15px 20px;
+    }
+
+    .result-item {
+        font-size: 1em;
+    }
+}

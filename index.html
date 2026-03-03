@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroop Effect Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Landing Page -->
+        <div id="landing-page" class="page active">
+            <div class="page-content">
+                <h1>Stroop Effect Test</h1>
+                <p class="instructions">You will be reading or saying colors on each of the following pages. Follow directions at the top of each page. Press space to begin.</p>
+                <div class="spacer-hint">Press SPACE to start</div>
+            </div>
+        </div>
+
+        <!-- Slide Viewer Page -->
+        <div id="slide-page" class="page">
+            <div class="page-content">
+                <div class="slide-container">
+                    <div class="slide-info">
+                        <span id="slide-number">Slide 1 of 4</span>
+                        <span id="timer" class="timer">0.0s</span>
+                    </div>
+                    <img id="slide-image" src="" alt="Stroop Effect Slide" class="slide-image">
+                    <p class="slide-instructions">Press SPACE when you're done</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Break/Congratulations Page -->
+        <div id="break-page" class="page">
+            <div class="page-content">
+                <div class="break-message">
+                    <h2>You did a great job!</h2>
+                    <p>Take a breath.</p>
+                    <p class="spacer-hint">Press SPACE to continue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="results-page" class="page">
+            <div class="page-content">
+                <h1>Test Complete!</h1>
+                <p>Here are your results:</p>
+                <div id="results-list" class="results-list">
+                    <!-- Results will be populated here -->
+                </div>
+                <button id="restart-button" class="restart-button">Start Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
