@@ -8,10 +8,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #333;
+    position: relative;
 }
 
 /* Orientation Overlay - Hidden by default */
@@ -20,19 +18,21 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     z-index: 9999;
-    align-items: center;
-    justify-content: center;
 }
 
-.orientation-content {
+.orientation-overlay .orientation-content {
     text-align: center;
     color: white;
     padding: 40px;
     max-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .rotate-icon {
@@ -66,7 +66,7 @@ body {
 /* Show overlay only on mobile devices in portrait mode */
 @media (max-width: 768px) and (orientation: portrait) {
     .orientation-overlay {
-        display: flex;
+        display: block;
     }
 }
 
@@ -78,6 +78,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .page {
