@@ -133,11 +133,12 @@ function showInstruction(slideIndex) {
 }
 
 // Event Listeners
-document.addEventListener('keydown', (event) => {
-    if (event.code === 'Space') {
-        event.preventDefault();
-        advancePage();
-    }
+document.addEventListener('keydown', () => {
+    advancePage();
+});
+
+document.addEventListener('touchstart', () => {
+    advancePage();
 });
 
 elements.restartButton.addEventListener('click', () => {
