@@ -13,6 +13,11 @@ const appState = {
     timerIntervalId: null
 };
 
+const googleFormConfig = {
+    baseUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScvwsn7383-YtCs8PXRGsPaH-Q1w5XpDVO01uJEVwMu4229Dw/viewform',
+    entryIds: ['492697418', '858033614', '640181834', '547156665']
+};
+
 // DOM References
 const pages = {
     landing: document.getElementById('landing-page'),
@@ -28,6 +33,7 @@ const elements = {
     instructionStep: document.getElementById('instruction-step'),
     instructionText: document.getElementById('instruction-text'),
     resultsList: document.getElementById('results-list'),
+    formButton: document.getElementById('form-button'),
     restartButton: document.getElementById('restart-button')
 };
 
@@ -71,6 +77,18 @@ function displayResults() {
         resultItem.textContent = `Slide ${index + 1}: ${time.toFixed(2)} seconds`;
         elements.resultsList.appendChild(resultItem);
     });
+}
+
+function buildGoogleFormUrl() {
+    const formUrl = new URL(googleFormConfig.baseUrl);
+    formUrl.searchParams.set('usp', 'pp_url');
+
+    googleFormConfig.entryIds.forEach((entryId, index) => {
+        const timeValue = appState.times[index] ?? 0;
+        formUrl.searchParams.set(`entry.${entryId}`, timeValue.toFixed(2));
+    });
+
+    return formUrl.toString();
 }
 
 function resetApp() {
@@ -144,6 +162,31 @@ document.addEventListener('click', () => {
 elements.restartButton.addEventListener('click', (e) => {
     e.stopPropagation();
     resetApp();
+});
+
+elements.formButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const prefilledUrl = buildGoogleFormUrl();
+    const popup = window.open('', '_blank');
+
+    if (popup === null) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(prefilledUrl)
+                .then(() => {
+                    alert('Popup was blocked. The prefilled form URL was copied to your clipboard.');
+                })
+                .catch(() => {
+                    window.prompt('Popup was blocked. Copy this prefilled form URL:', prefilledUrl);
+                });
+            return;
+        }
+
+        window.prompt('Popup was blocked. Copy this prefilled form URL:', prefilledUrl);
+        return;
+    }
+
+    popup.opener = null;
+    popup.location.href = prefilledUrl;
 });
 
 // Initialize
