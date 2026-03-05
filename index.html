@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroop Effect Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Landscape Orientation Prompt for Mobile -->
+    <div id="orientation-overlay" class="orientation-overlay">
+        <div class="orientation-content">
+            <svg class="rotate-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8M12 17v4" />
+            </svg>
+            <h2>Please Rotate Your Device</h2>
+            <p>For the best experience, please use landscape (horizontal) orientation.</p>
+        </div>
+    </div>
+
+    <div id="app" class="app-container">
+        <!-- Landing Page -->
+        <div id="landing-page" class="page active">
+            <div class="page-content">
+                <h1>Stroop Effect Test</h1>
+                <p class="instructions">This test has 4 steps. You will be reciting (out loud) the words and/or colors
+                    on each page.
+                    You will be timed on each step, so read each page as fast as possible.
+                    <strong>Go as quickly as you can while following the directions for each
+                        slide.</strong> You will see your results at the end, with a button to submit results on a
+                    Google form. Press any key or tap to begin.
+                </p>
+                <div class="spacer-hint">Press any key or tap to start</div>
+            </div>
+        </div>
+
+        <!-- Slide Viewer Page -->
+        <div id="slide-page" class="page">
+            <div class="page-content">
+                <div class="slide-container">
+                    <div class="slide-info">
+                        <span id="slide-number">Slide 1 of 4</span>
+                    </div>
+                    <img id="slide-image" src="" alt="Stroop Effect Slide" class="slide-image">
+                    <p class="slide-instructions">Press any key or tap when you're done</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instruction Page -->
+        <div id="instruction-page" class="page">
+            <div class="page-content">
+                <div class="instruction-message">
+                    <h2>Step <span id="instruction-step">1</span> of 4</h2>
+                    <p id="instruction-text" class="instruction-text"></p>
+                    <p class="spacer-hint">Press any key or tap to begin</p>
+                    <p class="spacer-hint" style="margin-top: 10px;">Then press any key or tap when you finish the page
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Break/Congratulations Page -->
+        <div id="break-page" class="page">
+            <div class="page-content">
+                <div class="break-message">
+                    <h2>You did a great job!</h2>
+                    <p>Take a breath.</p>
+                    <p class="spacer-hint">Press any key or tap to continue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="results-page" class="page">
+            <div class="page-content">
+                <h1>Test Complete!</h1>
+                <p>Here are your results:</p>
+                <div id="results-list" class="results-list">
+                    <!-- Results will be populated here -->
+                </div>
+                <div class="results-actions">
+                    <button id="form-button" class="restart-button">Submit with Google Form</button>
+                    <button id="restart-button" class="restart-button">Start Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

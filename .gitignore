@@ -1,0 +1,34 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Editor Directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# IDE Specific Files
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Local Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies (if ever added)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build Output (if ever added)
+dist/
+build/
